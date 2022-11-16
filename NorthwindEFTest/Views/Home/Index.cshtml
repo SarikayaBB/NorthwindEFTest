@@ -2,6 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+@section Styles{
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+}
+
+
 <div class="text-center">
     <table class="table table-striped align-content-center" id="myTable">
         <thead>
@@ -23,6 +28,9 @@
 
     </table>
 </div>
-<script>$(document).ready( function () {
-    $('#myTable').DataTable();
-} );</script>
+@section Scripts{
+        <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });</script>
+}
