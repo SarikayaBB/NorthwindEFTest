@@ -9,29 +9,37 @@
 
 <div class="text-center">
     <h1 class="display-4">Customer List</h1>
-    <table class="table table-striped align-content-center" id="myTable">
+    <table class="table table-striped align-content-center" id="customerTable">
         <thead>
             <tr>
-                <th>Ad</th>
-                <th>Soyad</th>
-                <th>Email</th>
-                <th>Islemler</th>
+                <th>Company Name</th>
+                <th>Contact Name</th>
+                <th>Contact Title</th>
+                <th>Contact City</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Bilal Besir</td>
-                <td>Sarikaya</td>
-                <td>bbesir@hotmail.com</td>
-                <td>Sil-Duzenle</td>
-            </tr>
+        <tbody class="table-group-divider">
         </tbody>
 
     </table>
 </div>
 @section Scripts{
-        <script>
+
+
+
+
+    <script>
         $(document).ready(function () {
-            $('#myTable').DataTable();
-        });</script>
+            $('#customerTable').DataTable({
+                ajax: '@Url.Action("GetAllJson")',
+                columns:[
+                {data:"companyName"},
+                {data:"contactName"},
+                {data:"contactTitle"},
+                {data:"city"},
+                ],
+            });
+
+        });
+    </script>
 }

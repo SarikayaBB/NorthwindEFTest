@@ -6,16 +6,17 @@ namespace NorthwindEFTest.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly NorthwindContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(NorthwindContext db)
         {
-            _logger = logger;
+            _db = db;
         }
+
 
         public IActionResult Index()
         {
-            return View();
+            return View(_db.Customers.ToList());
         }
 
         public IActionResult Privacy()
@@ -23,10 +24,10 @@ namespace NorthwindEFTest.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult GetAllJson()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            List<Customer> list = _db.Customers.ToList<Customer>();
+            return Json(new { data = list });
         }
     }
 }
